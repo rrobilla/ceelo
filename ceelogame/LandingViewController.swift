@@ -32,6 +32,11 @@ class LandingViewController: UIViewController {
                 fatalError("Unexpected destination \(segue.destination)")
             }
         }
+        if segue.identifier == "toSetup" {
+            guard segue.destination is GameSetupViewController else {
+                fatalError("Unexpected destination \(segue.destination)")
+            }
+        }
     }
     override open var shouldAutorotate: Bool{
         return false
