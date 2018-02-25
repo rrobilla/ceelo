@@ -21,7 +21,10 @@ class GameViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    //MARK: Delegates
+    override open var shouldAutorotate: Bool{
+        return false
+    }
     /*
     // MARK: - Navigation
 

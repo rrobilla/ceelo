@@ -21,35 +21,121 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="HOW TO PLAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dn-nP-bog">
-                                <rect key="frame" x="58" y="39" width="247" height="46"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zVF-yQ-M6v">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zVF-yQ-M6v">
                                 <rect key="frame" x="83" y="131" width="208" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="289-uu-cNt"/>
+                                    <constraint firstAttribute="width" constant="208" id="tFl-Zs-pJF"/>
+                                </constraints>
                                 <segments>
                                     <segment title="Banker"/>
                                     <segment title="No Banker"/>
                                 </segments>
+                                <connections>
+                                    <action selector="changeRules:" destination="j1P-wI-cXj" eventType="valueChanged" id="QtU-0S-Udl"/>
+                                </connections>
                             </segmentedControl>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rules load here" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5g-rg-kKP">
-                                <rect key="frame" x="16" y="221" width="343" height="394"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tal-Dg-gVn">
+                                <rect key="frame" x="16" y="217" width="343" height="430"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cqk-xA-eKJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="1437"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="This where the rules be">
+                                                <attributes>
+                                                    <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                        <tabStops>
+                                                            <textTab alignment="left" location="28">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="56">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="84">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="112">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="140">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="168">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="196">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="224">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="252">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="280">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="308">
+                                                                <options/>
+                                                            </textTab>
+                                                            <textTab alignment="left" location="336">
+                                                                <options/>
+                                                            </textTab>
+                                                        </tabStops>
+                                                    </paragraphStyle>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </scrollView>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rKt-M6-tfw">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="barTintColor" red="0.95537179061423294" green="0.92664934332338444" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem id="F84-NL-hcC">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="1kp-wJ-qT2">
+                                            <connections>
+                                                <action selector="done:" destination="j1P-wI-cXj" id="3dZ-hk-dS6"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HOW TO PLAY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8dn-nP-bog">
+                                <rect key="frame" x="64" y="64" width="247" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="46" id="9SO-h7-VNv"/>
+                                    <constraint firstAttribute="width" constant="247" id="XyX-Dt-rNJ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zVF-yQ-M6v" firstAttribute="centerY" secondItem="lyA-qV-crw" secondAttribute="centerY" constant="-188.5" id="3Uh-YA-L58"/>
+                            <constraint firstItem="8dn-nP-bog" firstAttribute="centerX" secondItem="lyA-qV-crw" secondAttribute="centerX" id="RWf-Ip-JHO"/>
+                            <constraint firstItem="zVF-yQ-M6v" firstAttribute="centerX" secondItem="lyA-qV-crw" secondAttribute="centerX" id="rJR-ih-1up"/>
+                            <constraint firstItem="8dn-nP-bog" firstAttribute="centerY" secondItem="lyA-qV-crw" secondAttribute="centerY" constant="-246.5" id="xHn-8G-7D5"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="gametypeSelector" destination="zVF-yQ-M6v" id="oh5-nn-tsp"/>
+                        <outlet property="rulesScrollView" destination="Tal-Dg-gVn" id="Dfw-Mv-XQ3"/>
+                        <outlet property="textBlock" destination="Cqk-xA-eKJ" id="6eo-ds-NE7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iyf-70-6YI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="68" y="-818.14092953523243"/>
+            <point key="canvasLocation" x="829.60000000000002" y="-815.44227886056979"/>
         </scene>
         <!--Landing View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -63,23 +149,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J2o-CJ-fkg">
-                                <rect key="frame" x="67" y="113" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MKH-Jc-Zy3">
+                                <rect key="frame" x="90" y="308" width="191" height="51"/>
+                                <color key="backgroundColor" red="0.19582530284648891" green="1" blue="0.21165883769626581" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="191" id="95m-AQ-Um5"/>
+                                    <constraint firstAttribute="height" constant="51" id="rGg-1X-oRe"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Play">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KcO-O7-Ct0">
+                                <rect key="frame" x="90" y="402" width="191" height="51"/>
+                                <color key="backgroundColor" red="1" green="0.16798276189875438" blue="0.099596936967665473" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="191" id="KTH-bR-NMZ"/>
+                                    <constraint firstAttribute="height" constant="51" id="QWL-4T-Mtj"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle">
+                                        <fragment content="Game Rules">
+                                            <attributes>
+                                                <font key="NSFont" metaFont="system" size="15"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                </state>
+                                <connections>
+                                    <segue destination="j1P-wI-cXj" kind="show" identifier="toRules" id="OqK-4a-E4a"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J2o-CJ-fkg">
+                                <rect key="frame" x="67" y="80" width="240" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="E9K-gb-Dzz"/>
+                                    <constraint firstAttribute="height" constant="128" id="sz9-gy-W7h"/>
+                                </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MKH-Jc-Zy3">
-                                <rect key="frame" x="92" y="308" width="191" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KcO-O7-Ct0">
-                                <rect key="frame" x="92" y="402" width="191" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="MKH-Jc-Zy3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-2" id="OOz-70-RsK"/>
+                            <constraint firstItem="J2o-CJ-fkg" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-189.5" id="Ujy-bP-t2s"/>
+                            <constraint firstItem="KcO-O7-Ct0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="-2" id="ebf-pS-PTz"/>
+                            <constraint firstItem="KcO-O7-Ct0" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="94" id="fjK-A8-YYq"/>
+                            <constraint firstItem="J2o-CJ-fkg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i04-vP-siD"/>
+                            <constraint firstItem="MKH-Jc-Zy3" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="xGw-j9-JVs"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="playButton" destination="MKH-Jc-Zy3" id="JYr-89-6bB"/>
+                        <outlet property="rulesButton" destination="KcO-O7-Ct0" id="ef7-lp-ffc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -148,7 +280,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aIC-8P-Nxt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1352.8" y="42.728635682158924"/>
+            <point key="canvasLocation" x="1170" y="927"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="M4g-yM-Qra">
@@ -173,7 +305,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQf-bR-QQx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1353" y="983"/>
+            <point key="canvasLocation" x="2190" y="927"/>
         </scene>
     </scenes>
 </document>
