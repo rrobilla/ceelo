@@ -9,14 +9,18 @@
 import UIKit
 
 class GameViewController: UIViewController {
+    
+    //MARK: Properties
     var numOfPlayers: Int?
     var gameType: Int?
-    private var players: [PlayerCard?]
+    var players = [PlayerCard?]()
+    
     
     @IBOutlet weak var p0: PlayerCard!
     @IBOutlet weak var p1: PlayerCard!
     @IBOutlet weak var p2: PlayerCard!
     @IBOutlet weak var p3: PlayerCard!
+    @IBOutlet weak var optionsMenu: OptionsMenu!
     
     
     func alertPopup(){
@@ -29,13 +33,16 @@ class GameViewController: UIViewController {
         // show the alert
         self.present(alert, animated: true, completion: nil)
     }
+    @IBAction func openMenu(_ sender: Any) {
+        optionsMenu.isHidden = false
+    }
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-
         
-
+        // Do any additional setup after loading the view
     }
 
     override func didReceiveMemoryWarning() {
@@ -52,25 +59,34 @@ class GameViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         super.viewDidAppear(animated)
-        if (numOfPlayers! > 0){
-            p3.isHidden = true
-            players.append(p0)
-            players.append(p1)
-            players.append(p2)
-        }
+        initializeGameSettings()
+        
         //set game data player amount to playerSlider's value
         //set game data game type to 0 (which means banker mode, 1 means no banker), segmented control's banker type which starts out selected
         
         
     }
-    /*
-    // MARK: - Navigation
+    
+    //MARK: Game Functions
+    func initializeGameSettings(){
+        optionsMenu.isHidden = true
+        players.append(p0)
+        players.append(p1)
+        players[1]?.playerName.text = "Computer 1"
+        if (numOfPlayers! == 3){
+            p3.isHidden = true
+            players.append(p2)
+            players[2]?.playerName.text = "Computer 2"
+        }
+        else{
+            players.append(p3)
+            players[2]?.playerName.text = "Computer 2"
+            players.append(p2)
+            players[3]?.playerName.text = "Computer 3"
+            
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
 
 }

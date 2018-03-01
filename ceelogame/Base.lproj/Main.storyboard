@@ -283,63 +283,70 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKt-td-dKO" customClass="PlayerCard" customModule="ceelogame" customModuleProvider="target">
-                                <rect key="frame" x="43" y="551" width="130" height="75"/>
+                                <rect key="frame" x="43" y="551" width="100" height="75"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="A7y-PT-eiB"/>
-                                    <constraint firstAttribute="width" constant="130" id="DVf-00-1iJ"/>
+                                    <constraint firstAttribute="width" constant="100" id="EXG-lu-Gqh"/>
+                                    <constraint firstAttribute="height" constant="75" id="n3E-4p-Lch"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="pName" value="You"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvM-jJ-Jnt" customClass="PlayerCard" customModule="ceelogame" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="230" width="130" height="75"/>
+                                <rect key="frame" x="0.0" y="230" width="100" height="75"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="DOD-n5-kdE"/>
-                                    <constraint firstAttribute="width" constant="130" id="Eta-F7-8yJ"/>
+                                    <constraint firstAttribute="width" constant="100" id="FGs-VQ-axN"/>
+                                    <constraint firstAttribute="height" constant="75" id="kUE-Fl-Y2t"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="pName" value="Computer1"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3b-Ln-fVL" customClass="PlayerCard" customModule="ceelogame">
-                                <rect key="frame" x="122" y="28" width="130" height="75"/>
+                                <rect key="frame" x="137" y="28" width="100" height="75"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="75" id="CmN-dn-gJO"/>
-                                    <constraint firstAttribute="width" constant="130" id="vbM-yG-WqU"/>
+                                    <constraint firstAttribute="height" constant="75" id="Hiy-9v-Tlc"/>
+                                    <constraint firstAttribute="width" constant="100" id="KfP-i2-Xpz"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="pName" value="Computer3"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Del-a5-vWy" customClass="PlayerCard" customModule="ceelogame" customModuleProvider="target">
-                                <rect key="frame" x="245" y="230" width="130" height="75"/>
+                                <rect key="frame" x="275" y="230" width="100" height="75"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="130" id="4wt-i0-aIR"/>
-                                    <constraint firstAttribute="height" constant="75" id="Ms6-zk-oni"/>
+                                    <constraint firstAttribute="width" constant="100" id="ZPw-6X-AD3"/>
+                                    <constraint firstAttribute="height" constant="75" id="ed7-j0-S1D"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="pName" value="Computer2"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHa-jv-E5k" customClass="OptionsMenu" customModule="ceelogame" customModuleProvider="target">
+                                <rect key="frame" x="67" y="167" width="240" height="330"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="330" id="Cug-Rf-qM0"/>
+                                    <constraint firstAttribute="width" constant="240" id="WID-rI-9G0"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcH-qk-9SL">
+                                <rect key="frame" x="10" y="20" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="gearicon.png"/>
+                                <connections>
+                                    <action selector="openMenu:" destination="OWc-z1-dQA" eventType="touchUpInside" id="UeR-1i-e2S"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="nvM-jJ-Jnt" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="-122.5" id="A3U-uv-xxV"/>
-                            <constraint firstItem="J3b-Ln-fVL" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" id="L4l-fg-A7T"/>
-                            <constraint firstItem="Del-a5-vWy" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="122.5" id="QWZ-nG-cyi"/>
-                            <constraint firstItem="nvM-jJ-Jnt" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-66" id="WNM-Fb-fl5"/>
-                            <constraint firstItem="OKt-td-dKO" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="-79.5" id="lyR-19-YnY"/>
-                            <constraint firstItem="J3b-Ln-fVL" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-268" id="tXa-KQ-pMo"/>
-                            <constraint firstItem="OKt-td-dKO" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="255" id="xYD-Kq-wEr"/>
-                            <constraint firstItem="Del-a5-vWy" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-66" id="xrd-wD-NfG"/>
+                            <constraint firstItem="OKt-td-dKO" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="255" id="Ca1-6B-fs0"/>
+                            <constraint firstItem="Del-a5-vWy" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="137.5" id="LwM-du-km1"/>
+                            <constraint firstItem="GHa-jv-E5k" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" id="XkO-Ap-eF4"/>
+                            <constraint firstItem="J3b-Ln-fVL" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" id="goR-e3-lx7"/>
+                            <constraint firstItem="OKt-td-dKO" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="-94.5" id="mfN-bn-KH3"/>
+                            <constraint firstItem="nvM-jJ-Jnt" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-66" id="mjs-Ep-oji"/>
+                            <constraint firstItem="Del-a5-vWy" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-66" id="rsz-Lr-din"/>
+                            <constraint firstItem="J3b-Ln-fVL" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-268" id="sMz-i5-YQJ"/>
+                            <constraint firstItem="GHa-jv-E5k" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-1.5" id="wV8-ne-gfD"/>
+                            <constraint firstItem="nvM-jJ-Jnt" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="-137.5" id="xt8-wK-3gU"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="optionsMenu" destination="GHa-jv-E5k" id="n5A-Ow-9N7"/>
                         <outlet property="p0" destination="OKt-td-dKO" id="Ow4-AC-H3j"/>
                         <outlet property="p1" destination="nvM-jJ-Jnt" id="WN4-Ji-qoz"/>
                         <outlet property="p2" destination="Del-a5-vWy" id="KZq-2L-B6l"/>
@@ -351,4 +358,7 @@
             <point key="canvasLocation" x="2124" y="611.24437781109452"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="gearicon.png" width="1024" height="1024"/>
+    </resources>
 </document>

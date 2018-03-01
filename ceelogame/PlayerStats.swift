@@ -7,7 +7,7 @@
 //
 
 import UIKit
-class PlayerStats: NSObject {
+class PlayerStats {
     var cash: Int!
     var bet: Int!
     var point: Int!
