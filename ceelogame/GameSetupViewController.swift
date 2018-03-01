@@ -48,10 +48,12 @@ class GameSetupViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if segue.identifier == "toGame" {
-            guard segue.destination is GameViewController else {
+            guard let gameViewController = segue.destination as? GameViewController else {
                 fatalError("Unexpected destination \(segue.destination)")
             }
             //insert game settings data in here to pass to GameView
+            gameViewController.gameType = selectedGametype.selectedSegmentIndex
+            gameViewController.numOfPlayers = Int(playersSlider.value)
         }
     }
     
@@ -59,7 +61,7 @@ class GameSetupViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         super.viewDidAppear(animated)
-        sliderLabel.text? = String(Int(playersSlider.value))
+        
         //set game data player amount to playerSlider's value
         //set game data game type to 0 (which means banker mode, 1 means no banker), segmented control's banker type which starts out selected
         

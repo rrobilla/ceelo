@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G18013" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G19009" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -282,18 +282,73 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2G2-m7-Qj4">
-                                <rect key="frame" x="67" y="90" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKt-td-dKO" customClass="PlayerCard" customModule="ceelogame" customModuleProvider="target">
+                                <rect key="frame" x="43" y="551" width="130" height="75"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="A7y-PT-eiB"/>
+                                    <constraint firstAttribute="width" constant="130" id="DVf-00-1iJ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="pName" value="You"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nvM-jJ-Jnt" customClass="PlayerCard" customModule="ceelogame" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="230" width="130" height="75"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="DOD-n5-kdE"/>
+                                    <constraint firstAttribute="width" constant="130" id="Eta-F7-8yJ"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="pName" value="Computer1"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J3b-Ln-fVL" customClass="PlayerCard" customModule="ceelogame">
+                                <rect key="frame" x="122" y="28" width="130" height="75"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="75" id="CmN-dn-gJO"/>
+                                    <constraint firstAttribute="width" constant="130" id="vbM-yG-WqU"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="pName" value="Computer3"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Del-a5-vWy" customClass="PlayerCard" customModule="ceelogame" customModuleProvider="target">
+                                <rect key="frame" x="245" y="230" width="130" height="75"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="130" id="4wt-i0-aIR"/>
+                                    <constraint firstAttribute="height" constant="75" id="Ms6-zk-oni"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="pName" value="Computer2"/>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nvM-jJ-Jnt" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="-122.5" id="A3U-uv-xxV"/>
+                            <constraint firstItem="J3b-Ln-fVL" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" id="L4l-fg-A7T"/>
+                            <constraint firstItem="Del-a5-vWy" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="122.5" id="QWZ-nG-cyi"/>
+                            <constraint firstItem="nvM-jJ-Jnt" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-66" id="WNM-Fb-fl5"/>
+                            <constraint firstItem="OKt-td-dKO" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="-79.5" id="lyR-19-YnY"/>
+                            <constraint firstItem="J3b-Ln-fVL" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-268" id="tXa-KQ-pMo"/>
+                            <constraint firstItem="OKt-td-dKO" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="255" id="xYD-Kq-wEr"/>
+                            <constraint firstItem="Del-a5-vWy" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-66" id="xrd-wD-NfG"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="p0" destination="OKt-td-dKO" id="Ow4-AC-H3j"/>
+                        <outlet property="p1" destination="nvM-jJ-Jnt" id="WN4-Ji-qoz"/>
+                        <outlet property="p2" destination="Del-a5-vWy" id="KZq-2L-B6l"/>
+                        <outlet property="p3" destination="J3b-Ln-fVL" id="c31-XO-Kb9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQf-bR-QQx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2124" y="612"/>
+            <point key="canvasLocation" x="2124" y="611.24437781109452"/>
         </scene>
     </scenes>
 </document>

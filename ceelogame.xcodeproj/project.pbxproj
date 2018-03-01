@@ -17,6 +17,9 @@
 		3300A27B204147E100F1B998 /* RulesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3300A27A204147E100F1B998 /* RulesViewController.swift */; };
 		3300A27D204149DF00F1B998 /* GameSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3300A27C204149DF00F1B998 /* GameSetupViewController.swift */; };
 		3300A27F20414CF000F1B998 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3300A27E20414CF000F1B998 /* GameViewController.swift */; };
+		339FAD8E2047BF750043D18B /* PlayerCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 339FAD8D2047BF750043D18B /* PlayerCard.xib */; };
+		339FAD942047C2A80043D18B /* PlayerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339FAD932047C2A80043D18B /* PlayerCard.swift */; };
+		339FAD982047D3F80043D18B /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339FAD972047D3F80043D18B /* PlayerStats.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		3300A27A204147E100F1B998 /* RulesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RulesViewController.swift; sourceTree = "<group>"; };
 		3300A27C204149DF00F1B998 /* GameSetupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSetupViewController.swift; sourceTree = "<group>"; };
 		3300A27E20414CF000F1B998 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		339FAD8D2047BF750043D18B /* PlayerCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerCard.xib; sourceTree = "<group>"; };
+		339FAD932047C2A80043D18B /* PlayerCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCard.swift; sourceTree = "<group>"; };
+		339FAD972047D3F80043D18B /* PlayerStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +113,9 @@
 				3300A24E20413ECD00F1B998 /* LandingViewController.swift */,
 				3300A27A204147E100F1B998 /* RulesViewController.swift */,
 				3300A25020413ECD00F1B998 /* Main.storyboard */,
+				339FAD972047D3F80043D18B /* PlayerStats.swift */,
+				339FAD8D2047BF750043D18B /* PlayerCard.xib */,
+				339FAD932047C2A80043D18B /* PlayerCard.swift */,
 				3300A27E20414CF000F1B998 /* GameViewController.swift */,
 				3300A27C204149DF00F1B998 /* GameSetupViewController.swift */,
 				3300A25320413ECD00F1B998 /* Assets.xcassets */,
@@ -243,6 +252,7 @@
 			files = (
 				3300A25720413ECD00F1B998 /* LaunchScreen.storyboard in Resources */,
 				3300A25420413ECD00F1B998 /* Assets.xcassets in Resources */,
+				339FAD8E2047BF750043D18B /* PlayerCard.xib in Resources */,
 				3300A25220413ECD00F1B998 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,9 +279,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3300A27F20414CF000F1B998 /* GameViewController.swift in Sources */,
+				339FAD982047D3F80043D18B /* PlayerStats.swift in Sources */,
 				3300A24F20413ECD00F1B998 /* LandingViewController.swift in Sources */,
 				3300A27B204147E100F1B998 /* RulesViewController.swift in Sources */,
 				3300A27D204149DF00F1B998 /* GameSetupViewController.swift in Sources */,
+				339FAD942047C2A80043D18B /* PlayerCard.swift in Sources */,
 				3300A24D20413ECD00F1B998 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -517,6 +529,7 @@
 				3300A27320413ECE00F1B998 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3300A27420413ECE00F1B998 /* Build configuration list for PBXNativeTarget "ceelogameTests" */ = {
 			isa = XCConfigurationList;
@@ -525,6 +538,7 @@
 				3300A27620413ECE00F1B998 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3300A27720413ECE00F1B998 /* Build configuration list for PBXNativeTarget "ceelogameUITests" */ = {
 			isa = XCConfigurationList;
@@ -533,6 +547,7 @@
 				3300A27920413ECE00F1B998 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
