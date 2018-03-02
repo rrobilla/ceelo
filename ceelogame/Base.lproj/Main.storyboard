@@ -314,43 +314,165 @@
                                     <constraint firstAttribute="height" constant="75" id="ed7-j0-S1D"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHa-jv-E5k" customClass="OptionsMenu" customModule="ceelogame" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHa-jv-E5k">
                                 <rect key="frame" x="67" y="167" width="240" height="330"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qJ-nB-nZj">
+                                        <rect key="frame" x="30" y="35" width="180" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="180" id="VdE-Nu-csr"/>
+                                            <constraint firstAttribute="height" constant="30" id="oyj-aO-ckc"/>
+                                        </constraints>
+                                        <state key="normal" title="Exit Game">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="exitGame:" destination="OWc-z1-dQA" eventType="touchUpInside" id="Ff2-Qh-POJ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSE-JS-IrH">
+                                        <rect key="frame" x="30" y="150" width="180" height="30"/>
+                                        <color key="backgroundColor" red="0.99607843139999996" green="0.50196078430000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="P2F-hm-I7l"/>
+                                            <constraint firstAttribute="width" constant="180" id="of1-Ha-A7p"/>
+                                        </constraints>
+                                        <state key="normal" title="Restart Game">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="restartGame:" destination="OWc-z1-dQA" eventType="touchUpInside" id="Tx7-7K-a3B"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vsM-7g-5dQ">
+                                        <rect key="frame" x="30" y="272" width="180" height="30"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="6nm-Vz-ume"/>
+                                            <constraint firstAttribute="width" constant="180" id="8DO-84-WWQ"/>
+                                        </constraints>
+                                        <state key="normal" title="Return to Game">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="returnToGame:" destination="OWc-z1-dQA" eventType="touchUpInside" id="Mv2-61-gox"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="3qJ-nB-nZj" firstAttribute="centerX" secondItem="GHa-jv-E5k" secondAttribute="centerX" id="8fN-0y-NNG"/>
                                     <constraint firstAttribute="height" constant="330" id="Cug-Rf-qM0"/>
+                                    <constraint firstItem="3qJ-nB-nZj" firstAttribute="centerY" secondItem="GHa-jv-E5k" secondAttribute="centerY" constant="-115" id="OdR-LH-X6O"/>
+                                    <constraint firstItem="GSE-JS-IrH" firstAttribute="centerY" secondItem="GHa-jv-E5k" secondAttribute="centerY" id="QnA-Bl-W1J"/>
+                                    <constraint firstItem="vsM-7g-5dQ" firstAttribute="centerY" secondItem="GHa-jv-E5k" secondAttribute="centerY" constant="122" id="Swp-Zk-SNZ"/>
                                     <constraint firstAttribute="width" constant="240" id="WID-rI-9G0"/>
+                                    <constraint firstItem="vsM-7g-5dQ" firstAttribute="centerX" secondItem="GHa-jv-E5k" secondAttribute="centerX" id="hfi-f5-fdq"/>
+                                    <constraint firstItem="GSE-JS-IrH" firstAttribute="centerX" secondItem="GHa-jv-E5k" secondAttribute="centerX" id="yQB-QL-Xha"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zcH-qk-9SL">
                                 <rect key="frame" x="10" y="20" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="gearicon.png"/>
+                                <state key="normal" title="GearButton" image="gearicon.png"/>
                                 <connections>
                                     <action selector="openMenu:" destination="OWc-z1-dQA" eventType="touchUpInside" id="UeR-1i-e2S"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rva-tV-kov">
+                                <rect key="frame" x="145" y="551" width="232" height="96"/>
+                                <subviews>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="4Gb-qh-DDY">
+                                        <rect key="frame" x="20" y="67" width="94" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="94" id="JaA-oE-tG3"/>
+                                            <constraint firstAttribute="height" constant="29" id="xLT-X7-vcf"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="changeBet:" destination="OWc-z1-dQA" eventType="valueChanged" id="CLM-Sk-maE"/>
+                                        </connections>
+                                    </stepper>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cGJ-gM-5TE">
+                                        <rect key="frame" x="46" y="33" width="42" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="0Wm-E7-8nB"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="42" id="g2J-si-bHC"/>
+                                            <constraint firstAttribute="width" constant="42" id="oPw-xw-EcK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h7d-sT-2AF">
+                                        <rect key="frame" x="46" y="4" width="42" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="42" id="gva-ow-8gu"/>
+                                            <constraint firstAttribute="height" constant="21" id="ru6-mr-wY9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mk5-vb-IyX">
+                                        <rect key="frame" x="153" y="33" width="46" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="46" id="ae1-w7-F8G"/>
+                                            <constraint firstAttribute="height" constant="30" id="yxU-bN-YEY"/>
+                                        </constraints>
+                                        <state key="normal" title="Bet">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="confirmBet:" destination="OWc-z1-dQA" eventType="touchUpInside" id="T5L-Dp-a6u"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="mk5-vb-IyX" firstAttribute="centerX" secondItem="Rva-tV-kov" secondAttribute="centerX" constant="60" id="D8m-Ue-psR"/>
+                                    <constraint firstItem="h7d-sT-2AF" firstAttribute="centerX" secondItem="Rva-tV-kov" secondAttribute="centerX" constant="-49" id="Meg-H2-cII"/>
+                                    <constraint firstAttribute="height" constant="96" id="NWn-kL-g0V"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="232" id="PFu-Dc-ipf"/>
+                                    <constraint firstItem="4Gb-qh-DDY" firstAttribute="centerX" secondItem="Rva-tV-kov" secondAttribute="centerX" constant="-49" id="THn-z0-xRN"/>
+                                    <constraint firstAttribute="width" constant="232" id="kqg-Y5-guQ"/>
+                                    <constraint firstItem="h7d-sT-2AF" firstAttribute="centerY" secondItem="Rva-tV-kov" secondAttribute="centerY" constant="-33.5" id="n5x-mg-UwN"/>
+                                    <constraint firstItem="mk5-vb-IyX" firstAttribute="centerY" secondItem="Rva-tV-kov" secondAttribute="centerY" id="nLc-8Z-ffo"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="96" id="rPC-g0-r0F"/>
+                                    <constraint firstItem="4Gb-qh-DDY" firstAttribute="centerY" secondItem="Rva-tV-kov" secondAttribute="centerY" constant="33.5" id="rz6-5r-03m"/>
+                                    <constraint firstItem="cGJ-gM-5TE" firstAttribute="centerY" secondItem="Rva-tV-kov" secondAttribute="centerY" id="yU2-4N-chc"/>
+                                    <constraint firstItem="cGJ-gM-5TE" firstAttribute="centerX" secondItem="Rva-tV-kov" secondAttribute="centerX" constant="-49" id="ybA-5C-zAE"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="OKt-td-dKO" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="255" id="Ca1-6B-fs0"/>
                             <constraint firstItem="Del-a5-vWy" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="137.5" id="LwM-du-km1"/>
+                            <constraint firstItem="Rva-tV-kov" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="73.5" id="SSu-gi-4pr"/>
                             <constraint firstItem="GHa-jv-E5k" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" id="XkO-Ap-eF4"/>
+                            <constraint firstItem="Rva-tV-kov" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="265.5" id="Zv1-Dg-mqJ"/>
                             <constraint firstItem="J3b-Ln-fVL" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" id="goR-e3-lx7"/>
+                            <constraint firstItem="Rva-tV-kov" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="73.5" id="hqk-Sd-qNe"/>
                             <constraint firstItem="OKt-td-dKO" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="-94.5" id="mfN-bn-KH3"/>
                             <constraint firstItem="nvM-jJ-Jnt" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-66" id="mjs-Ep-oji"/>
                             <constraint firstItem="Del-a5-vWy" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-66" id="rsz-Lr-din"/>
                             <constraint firstItem="J3b-Ln-fVL" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-268" id="sMz-i5-YQJ"/>
+                            <constraint firstItem="Rva-tV-kov" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="265.5" id="tjg-df-IXr"/>
                             <constraint firstItem="GHa-jv-E5k" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-1.5" id="wV8-ne-gfD"/>
                             <constraint firstItem="nvM-jJ-Jnt" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="-137.5" id="xt8-wK-3gU"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="optionsMenu" destination="GHa-jv-E5k" id="n5A-Ow-9N7"/>
+                        <outlet property="betAmount" destination="cGJ-gM-5TE" id="L9G-8e-ejC"/>
+                        <outlet property="betWindow" destination="Rva-tV-kov" id="SKm-Gi-1uW"/>
+                        <outlet property="optionsMenu" destination="GHa-jv-E5k" id="Pkp-wT-atO"/>
                         <outlet property="p0" destination="OKt-td-dKO" id="Ow4-AC-H3j"/>
                         <outlet property="p1" destination="nvM-jJ-Jnt" id="WN4-Ji-qoz"/>
                         <outlet property="p2" destination="Del-a5-vWy" id="KZq-2L-B6l"/>
                         <outlet property="p3" destination="J3b-Ln-fVL" id="c31-XO-Kb9"/>
+                        <outlet property="stepper" destination="4Gb-qh-DDY" id="qME-UB-mxg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uQf-bR-QQx" userLabel="First Responder" sceneMemberID="firstResponder"/>

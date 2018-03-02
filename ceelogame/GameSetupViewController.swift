@@ -61,7 +61,7 @@ class GameSetupViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         super.viewDidAppear(animated)
-        
+        sliderLabel.text? = String(Int(playersSlider.value))
         //set game data player amount to playerSlider's value
         //set game data game type to 0 (which means banker mode, 1 means no banker), segmented control's banker type which starts out selected
         

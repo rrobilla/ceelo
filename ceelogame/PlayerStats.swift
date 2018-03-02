@@ -7,12 +7,13 @@
 //
 
 import UIKit
-class PlayerStats {
+class PlayerStats: NSObject {
     var cash: Int!
     var bet: Int!
     var point: Int!
     var name: String!
     var position: Int!
+    var playerCard: PlayerCard!
     //var tiltPercentage: Int? //Use this to affect the betting paterns of the cpu
     
 /*
@@ -54,10 +55,12 @@ class PlayerStats {
     }
 */
     
-    init(name: String = "Computer", position: Int = -1) {
-        self.cash = 10000
+    init(name: String = "Computer", cash: Int = 10000, bet: Int = 0, point: Int = 0, position: Int, pcard: PlayerCard) {
+        self.name = name
+        self.cash = cash
         self.bet = 0
         self.point = 0
         self.position = position
+        self.playerCard = pcard
     }
 }
