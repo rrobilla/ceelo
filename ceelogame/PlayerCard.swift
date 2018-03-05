@@ -11,9 +11,6 @@ import UIKit
 @IBDesignable class PlayerCard: UIView {
 
     var view: UIView!
-    var pCash: Int
-    var pBet: Int
-    var pPoint: Int
     
     @IBOutlet weak var playerName: UILabel!
     @IBOutlet weak var playerCash: UILabel!
@@ -66,20 +63,12 @@ import UIKit
     
     
     override init(frame: CGRect){
-        self.pCash = 10000
-        self.pBet = 0
-        self.pPoint = 0
-
         super.init(frame: frame)
         
         setup()
     }
     
     required init?(coder aDecoder: NSCoder){
-        self.pCash = 10000
-        self.pBet = 0
-        self.pPoint = 0
-
         super.init(coder: aDecoder)
         setup()
     }
@@ -89,10 +78,6 @@ import UIKit
         view.frame = bounds
         view.autoresizingMask = UIViewAutoresizing.flexibleWidth.union(UIViewAutoresizing.flexibleHeight)
         //view.autoresizingMask = [.flexibleWidth|.flexibleHeight]
-        self.playerName?.text = "Player"
-        self.playerCash?.text = String(describing: pCash)
-        self.playerBet?.text = String(describing: pBet)
-        self.playerPoint?.text = String(describing: pPoint)
         addSubview(view)
     }
     

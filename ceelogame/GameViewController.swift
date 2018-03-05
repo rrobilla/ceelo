@@ -7,13 +7,23 @@
 //
 
 import UIKit
+import Foundation
+
+//Enum used for setting CPU betting patterns
+enum CpuLevel {
+    case easy, normal, hard, none
+}
 
 class GameViewController: UIViewController {
     
     //MARK: Properties
     var numOfPlayers: Int?
     var gameType: Int?
+    
+    //Contains the CPU players as PlayerStats objects, each containing a PlayerCard UI element
     var players = [PlayerStats]()
+    //Contains the banker PlayerStats object
+    var banker = [PlayerStats]()
     
     //UI Player cards containing player Data
     @IBOutlet weak var p0: PlayerCard!
@@ -44,7 +54,7 @@ class GameViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    //Options menu gear button
+    //Options menu - gear button
     @IBAction func openMenu(_ sender: Any) {
         optionsMenu.isHidden = false
     }
@@ -68,18 +78,26 @@ class GameViewController: UIViewController {
         betAmount.text = String(describing: Int(stepper.value))
     }
     @IBAction func confirmBet(_ sender: Any) {
-        alertPopup()
+        for p in banker{
+            p.bet = Int(stepper.value)
+            p.playerCard.playerBet.text = String(p.bet)
+            
+        }
+        betWindow.isHidden = true
+        betting()
     }
     
     //MARK: Loading
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // Do any additional setup after loading the view
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+        
         // Dispose of any resources that can be recreated.
     }
     
@@ -88,7 +106,9 @@ class GameViewController: UIViewController {
         super.viewWillAppear(animated)
         super.viewDidAppear(animated)
         self.view.addSubview(optionsMenu)
-        initializeGameSettings()
+        initializePlayers()
+        setGameBoard()
+        
         
         //set game data player amount to playerSlider's value
         //set game data game type to 0 (which means banker mode, 1 means no banker), segmented control's banker type which starts out selected
@@ -102,35 +122,129 @@ class GameViewController: UIViewController {
     
     //MARK: Game Functions
     
+    //Generates a random number between
+    func generateNumber(minVal: Int, maxVal: UInt32)->Int{
+        var lvl = Int(arc4random_uniform(maxVal))
+        while (lvl < minVal){
+            lvl = Int(arc4random_uniform(maxVal))
+        }
+        return lvl
+    }
+    
+    func getDifficulty()-> CpuLevel{
+        let number = generateNumber(minVal: 1, maxVal: 3)
+        switch(number){
+        case 1: return CpuLevel.easy
+        case 2: return CpuLevel.normal
+        case 3: return CpuLevel.hard
+        default: return CpuLevel.easy
+        }
+    }
     //Adjust the game values and screens associated during the view load
-    func initializeGameSettings(){
+    func initializePlayers(){
         //Adjust UI component visability during load
         optionsMenu.isHidden = true
-        
+
         //Create the array of players
-        var statsp0 = PlayerStats(name: "You", cash: 10000, bet: 0, point: 0, position: 0, pcard: p0)
-        players.append(statsp0)
         
-        var statsp1 = PlayerStats(name: "CPU 1", cash: 10000, bet: 0, point: 0, position: 0, pcard: p1)
+        
+        var statsp0 = PlayerStats(name: "You", cash: 10000, bet: 0, point: 0, position: 0, pcard: p0, cpu: CpuLevel.none)
+        banker.append(statsp0)
+        
+        
+        var statsp1 = PlayerStats(name: "CPU 1", cash: 10000, bet: 0, point: 0, position: 0, pcard: p1, cpu: getDifficulty())
         players.append(statsp1)
         
         if (numOfPlayers! == 3){
             p3.isHidden = true
-            var statsp2 = PlayerStats(name: "CPU 2", cash: 10000, bet: 0, point: 0, position: 0, pcard: p2)
+            var statsp2 = PlayerStats(name: "CPU 2", cash: 10000, bet: 0, point: 0, position: 0, pcard: p2, cpu: getDifficulty())
             players.append(statsp2)
  
         }
         else{
-            var statsp3 = PlayerStats(name: "CPU 2", cash: 10000, bet: 0, point: 0, position: 0, pcard: p3)
+            var statsp3 = PlayerStats(name: "CPU 2", cash: 10000, bet: 0, point: 0, position: 0, pcard: p3, cpu: getDifficulty())
             players.append(statsp3)
 
-            var statsp2 = PlayerStats(name: "CPU 3", cash: 10000, bet: 0, point: 0, position: 0, pcard: p2)
+            var statsp2 = PlayerStats(name: "CPU 3", cash: 10000, bet: 0, point: 0, position: 0, pcard: p2, cpu: getDifficulty())
             players.append(statsp2)
  
             
         }
         //Anything else to initialize game? Current Player icon
+    }
+    
+    func setGameBoard(){
+        for p in banker{
+            p.playerCard.playerName.text = p.name
+            p.playerCard.playerBet.text = String(p.bet)
+            p.playerCard.playerCash.text = String(p.cash)
+            p.playerCard.playerPoint.text = String(p.point)
+        }
+        for p in players{
+            p.playerCard.playerName.text = p.name
+            p.playerCard.playerBet.text = String(p.bet)
+            p.playerCard.playerCash.text = String(p.cash)
+            p.playerCard.playerPoint.text = String(p.point)
+        }
+    }
+    
+    //MARK: Betting Functions
+    func cpuBetPercentage(difficulty: CpuLevel)->[Double]{
+        if (difficulty == .easy){
+            return [0.05, 0.1, 0.14, 0.02, 0.08]
+        }
+        else if (difficulty == .normal){
+            return [0.05, 0.1, 0.15, 0.2, 0.25]
+        }
+        else{ //hard
+            return [0.5, 0.12, 0.35, 0.18, 1.0]
+        }
+    }
+    
+    func betting(){
+        let bankerBet = banker[0].bet
+        var totalAgainst = 0
         
+        for p in players{
+            let cpuPercentages = cpuBetPercentage(difficulty: p.cpuLvl)
+            let n = generateNumber(minVal: 0, maxVal: 4)
+            //If the cpu has no cash, go to next cpu for betting
+            if (p.cash <= 0){
+                continue
+            }
+            //If the banker's bet has been covered already, go to the next cpu for betting
+            let needsToBeCovered = bankerBet! - totalAgainst
+            if ((needsToBeCovered) <= 0){
+                continue
+            }
+            let cpuBet = Int(Double(needsToBeCovered) * cpuPercentages[n])
+            if (p.cash > cpuBet){
+                p.bet = cpuBet
+            }
+            else{
+                p.bet = 1
+            }
+            
+            p.playerCard.playerBet.text = String(p.bet)
+            totalAgainst += p.bet
+            
+        }//Each CPU has made their bets
+        //Adjust Banker's bet
+        if (bankerBet! > totalAgainst){
+            banker[0].bet = totalAgainst
+            banker[0].playerCard.playerBet.text = String(banker[0].bet)
+        }
+        
+        
+    }
+    
+    func rolling(){
+        
+    }
+    
+    func payout(){
+            
     }
 
 }
+

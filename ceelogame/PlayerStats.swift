@@ -14,6 +14,7 @@ class PlayerStats: NSObject {
     var name: String!
     var position: Int!
     var playerCard: PlayerCard!
+    var cpuLvl: CpuLevel!
     //var tiltPercentage: Int? //Use this to affect the betting paterns of the cpu
     
 /*
@@ -55,12 +56,13 @@ class PlayerStats: NSObject {
     }
 */
     
-    init(name: String = "Computer", cash: Int = 10000, bet: Int = 0, point: Int = 0, position: Int, pcard: PlayerCard) {
+    init(name: String = "Computer", cash: Int = 10000, bet: Int = 0, point: Int = 0, position: Int, pcard: PlayerCard, cpu: CpuLevel = CpuLevel.none) {
         self.name = name
         self.cash = cash
         self.bet = 0
         self.point = 0
         self.position = position
         self.playerCard = pcard
+        self.cpuLvl = cpu
     }
 }
