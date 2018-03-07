@@ -56,6 +56,9 @@ class GameViewController: UIViewController {
     @IBOutlet weak var resultp3: UIImageView!
     @IBOutlet weak var resultp4: UIImageView!
     
+    @IBOutlet weak var die1: UILabel!
+    @IBOutlet weak var die2: UILabel!
+    @IBOutlet weak var die3: UILabel!
     
     
     
@@ -176,7 +179,7 @@ class GameViewController: UIViewController {
         //Adjust UI component visability during load
         optionsMenu.isHidden = true
         bettingPopup.isHidden = true
-        rollWindow.isHidden = true
+        //rollWindow.isHidden = true
 
         //Create the array of players
         

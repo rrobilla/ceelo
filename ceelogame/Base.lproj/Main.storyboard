@@ -514,6 +514,27 @@
                                     <constraint firstAttribute="width" constant="375" id="zhM-9R-gpu"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rje-pT-9k8">
+                                <rect key="frame" x="105" y="144" width="55" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="56"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oaX-Hd-mWt">
+                                <rect key="frame" x="214" y="144" width="55" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="56"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBy-J0-0Jb">
+                                <rect key="frame" x="160" y="144" width="55" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="56"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -548,6 +569,9 @@
                         <outlet property="bettingPopup" destination="zRK-NT-nVD" id="8mj-Ya-MJk"/>
                         <outlet property="bettingPopupLabel" destination="hYr-vU-8qP" id="8q8-Ds-d3o"/>
                         <outlet property="diceButton" destination="5Tu-9D-jUd" id="Lgz-rv-P1T"/>
+                        <outlet property="die1" destination="Rje-pT-9k8" id="cBc-kB-udG"/>
+                        <outlet property="die2" destination="oBy-J0-0Jb" id="ipX-4s-kdz"/>
+                        <outlet property="die3" destination="oaX-Hd-mWt" id="KYV-Lb-EWm"/>
                         <outlet property="optionsMenu" destination="GHa-jv-E5k" id="Pkp-wT-atO"/>
                         <outlet property="p0" destination="OKt-td-dKO" id="Ow4-AC-H3j"/>
                         <outlet property="p1" destination="nvM-jJ-Jnt" id="WN4-Ji-qoz"/>
