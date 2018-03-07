@@ -445,10 +445,29 @@
                                     <constraint firstItem="cGJ-gM-5TE" firstAttribute="centerX" secondItem="Rva-tV-kov" secondAttribute="centerX" constant="-49" id="ybA-5C-zAE"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRK-NT-nVD">
+                                <rect key="frame" x="109" y="305" width="157" height="56"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Returning uncovered Bets" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYr-vU-8qP">
+                                        <rect key="frame" x="10" y="8" width="137" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="ZxQ-CN-Grs"/>
+                                    <constraint firstAttribute="width" constant="157" id="m9N-Ia-YSH"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="zRK-NT-nVD" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" id="BMq-V3-TVC"/>
                             <constraint firstItem="OKt-td-dKO" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="255" id="Ca1-6B-fs0"/>
+                            <constraint firstItem="zRK-NT-nVD" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" id="FJB-V3-YdQ"/>
                             <constraint firstItem="Del-a5-vWy" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="137.5" id="LwM-du-km1"/>
                             <constraint firstItem="Rva-tV-kov" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="73.5" id="SSu-gi-4pr"/>
                             <constraint firstItem="GHa-jv-E5k" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" id="XkO-Ap-eF4"/>
@@ -467,6 +486,8 @@
                     <connections>
                         <outlet property="betAmount" destination="cGJ-gM-5TE" id="L9G-8e-ejC"/>
                         <outlet property="betWindow" destination="Rva-tV-kov" id="SKm-Gi-1uW"/>
+                        <outlet property="bettingPopup" destination="zRK-NT-nVD" id="8mj-Ya-MJk"/>
+                        <outlet property="bettingPopupLabel" destination="hYr-vU-8qP" id="8q8-Ds-d3o"/>
                         <outlet property="optionsMenu" destination="GHa-jv-E5k" id="Pkp-wT-atO"/>
                         <outlet property="p0" destination="OKt-td-dKO" id="Ow4-AC-H3j"/>
                         <outlet property="p1" destination="nvM-jJ-Jnt" id="WN4-Ji-qoz"/>

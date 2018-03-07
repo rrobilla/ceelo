@@ -39,6 +39,10 @@ class GameViewController: UIViewController {
     @IBOutlet weak var betAmount: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
+    @IBOutlet weak var bettingPopup: UIView!
+    @IBOutlet weak var bettingPopupLabel: UILabel!
+    
+    
     
     //MARK: UI Touch Events
     
@@ -121,6 +125,7 @@ class GameViewController: UIViewController {
     }
     
     //MARK: Game Functions
+
     
     //Generates a random number between
     func generateNumber(minVal: Int, maxVal: UInt32)->Int{
@@ -144,6 +149,7 @@ class GameViewController: UIViewController {
     func initializePlayers(){
         //Adjust UI component visability during load
         optionsMenu.isHidden = true
+        bettingPopup.isHidden = true
 
         //Create the array of players
         
@@ -152,20 +158,20 @@ class GameViewController: UIViewController {
         banker.append(statsp0)
         
         
-        var statsp1 = PlayerStats(name: "CPU 1", cash: 10000, bet: 0, point: 0, position: 0, pcard: p1, cpu: getDifficulty())
+        var statsp1 = PlayerStats(name: "CPU 1", cash: 10000, bet: 0, point: 0, position: 1, pcard: p1, cpu: getDifficulty())
         players.append(statsp1)
         
         if (numOfPlayers! == 3){
             p3.isHidden = true
-            var statsp2 = PlayerStats(name: "CPU 2", cash: 10000, bet: 0, point: 0, position: 0, pcard: p2, cpu: getDifficulty())
+            var statsp2 = PlayerStats(name: "CPU 2", cash: 10000, bet: 0, point: 0, position: 2, pcard: p2, cpu: getDifficulty())
             players.append(statsp2)
  
         }
         else{
-            var statsp3 = PlayerStats(name: "CPU 2", cash: 10000, bet: 0, point: 0, position: 0, pcard: p3, cpu: getDifficulty())
+            var statsp3 = PlayerStats(name: "CPU 2", cash: 10000, bet: 0, point: 0, position: 2, pcard: p3, cpu: getDifficulty())
             players.append(statsp3)
 
-            var statsp2 = PlayerStats(name: "CPU 3", cash: 10000, bet: 0, point: 0, position: 0, pcard: p2, cpu: getDifficulty())
+            var statsp2 = PlayerStats(name: "CPU 3", cash: 10000, bet: 0, point: 0, position: 3, pcard: p2, cpu: getDifficulty())
             players.append(statsp2)
  
             
@@ -225,14 +231,63 @@ class GameViewController: UIViewController {
                 p.bet = 1
             }
             
-            p.playerCard.playerBet.text = String(p.bet)
+            //p.playerCard.playerBet.text = String(p.bet)// move this outside the loop and delay it - can add animations
             totalAgainst += p.bet
             
         }//Each CPU has made their bets
-        //Adjust Banker's bet
-        if (bankerBet! > totalAgainst){
-            banker[0].bet = totalAgainst
-            banker[0].playerCard.playerBet.text = String(banker[0].bet)
+        
+        
+        //TODO: Currently using inline values for delay time, try to figure out a way to feed it a value variable
+
+        for p in players{
+            if (p.position == 1){
+                //trigger onscreen ui popup
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.bettingPopupLabel.text = p.name + " is betting"
+                self.bettingPopup.isHidden = false
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
+                    p.playerCard.playerBet.text = String(p.bet)
+                    self.bettingPopup.isHidden = true
+                }
+            }
+            else if (p.position == 2){
+                //trigger onscreen ui popup
+                DispatchQueue.main.asyncAfter(deadline: .now() + 7) {
+                    self.bettingPopupLabel.text = p.name + " is betting"
+                    self.bettingPopup.isHidden = false
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+                    p.playerCard.playerBet.text = String(p.bet)
+                    self.bettingPopup.isHidden = true
+                }
+            }
+            else{
+                //trigger onscreen ui popup
+                DispatchQueue.main.asyncAfter(deadline: .now() + 11) {
+                    self.bettingPopupLabel.text = p.name + " is betting"
+                    self.bettingPopup.isHidden = false
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 14) {
+                    p.playerCard.playerBet.text = String(p.bet)
+                    self.bettingPopup.isHidden = true
+                }
+            }
+            //delayTime += delayTime
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 16) {
+            self.bettingPopupLabel.text = "Returning uncovered Bets"
+            self.bettingPopup.isHidden = false
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 18) {
+        
+            //Adjust Banker's bet
+            if (bankerBet! > totalAgainst){
+                self.banker[0].bet = totalAgainst
+                self.banker[0].playerCard.playerBet.text = String(self.banker[0].bet)
+            }
+            self.bettingPopup.isHidden = true
         }
         
         
@@ -248,3 +303,9 @@ class GameViewController: UIViewController {
 
 }
 
+//Mark: KeeperCode
+
+//This will cause a delay of however many seconds, to allow for slower and more fluid UI altering
+//DispatchQueue.main.asyncAfter(deadline: .now() + 2) { // change 2 to desired
+    // Your code with delay
+//}
