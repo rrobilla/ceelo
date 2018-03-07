@@ -62,7 +62,7 @@
 		339FAD8D2047BF750043D18B /* PlayerCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerCard.xib; sourceTree = "<group>"; };
 		339FAD932047C2A80043D18B /* PlayerCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCard.swift; sourceTree = "<group>"; };
 		339FAD972047D3F80043D18B /* PlayerStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
-		33B36B6A204FBD86006F9967 /* dice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice.png; path = Base.lproj/dice.png; sourceTree = "<group>"; };
+		33B36B6A204FBD86006F9967 /* dice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice.png; path = ceelogame/dice.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
