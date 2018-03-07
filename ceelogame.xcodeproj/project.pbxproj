@@ -21,6 +21,7 @@
 		339FAD8E2047BF750043D18B /* PlayerCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 339FAD8D2047BF750043D18B /* PlayerCard.xib */; };
 		339FAD942047C2A80043D18B /* PlayerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339FAD932047C2A80043D18B /* PlayerCard.swift */; };
 		339FAD982047D3F80043D18B /* PlayerStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339FAD972047D3F80043D18B /* PlayerStats.swift */; };
+		33B36B6B204FBD86006F9967 /* dice.png in Resources */ = {isa = PBXBuildFile; fileRef = 33B36B6A204FBD86006F9967 /* dice.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		339FAD8D2047BF750043D18B /* PlayerCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlayerCard.xib; sourceTree = "<group>"; };
 		339FAD932047C2A80043D18B /* PlayerCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerCard.swift; sourceTree = "<group>"; };
 		339FAD972047D3F80043D18B /* PlayerStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerStats.swift; sourceTree = "<group>"; };
+		33B36B6A204FBD86006F9967 /* dice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice.png; path = Base.lproj/dice.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				339FAD8D2047BF750043D18B /* PlayerCard.xib */,
 				339FAD932047C2A80043D18B /* PlayerCard.swift */,
 				3300A27E20414CF000F1B998 /* GameViewController.swift */,
+				33B36B6A204FBD86006F9967 /* dice.png */,
 				3300A27C204149DF00F1B998 /* GameSetupViewController.swift */,
 				3300A25320413ECD00F1B998 /* Assets.xcassets */,
 				337C14B4204891A400637658 /* gearicon.png */,
@@ -255,6 +258,7 @@
 			files = (
 				3300A25720413ECD00F1B998 /* LaunchScreen.storyboard in Resources */,
 				337C14B5204891A400637658 /* gearicon.png in Resources */,
+				33B36B6B204FBD86006F9967 /* dice.png in Resources */,
 				3300A25420413ECD00F1B998 /* Assets.xcassets in Resources */,
 				339FAD8E2047BF750043D18B /* PlayerCard.xib in Resources */,
 				3300A25220413ECD00F1B998 /* Main.storyboard in Resources */,

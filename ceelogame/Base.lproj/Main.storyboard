@@ -462,13 +462,67 @@
                                     <constraint firstAttribute="width" constant="157" id="m9N-Ia-YSH"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DtU-1R-1Iy">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Tu-9D-jUd">
+                                        <rect key="frame" x="126" y="349" width="122" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="122" id="bDN-cO-rwH"/>
+                                            <constraint firstAttribute="height" constant="65" id="eA1-I3-Cr2"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="dice.png"/>
+                                        <connections>
+                                            <action selector="rollDice:" destination="OWc-z1-dQA" eventType="touchUpInside" id="oVd-7h-ewG"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LC8-CT-6E8">
+                                        <rect key="frame" x="43" y="530" width="100" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PT6-Xh-GLX">
+                                        <rect key="frame" x="0.0" y="210" width="100" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z9c-N7-ccS">
+                                        <rect key="frame" x="137" y="8" width="100" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="o33-jj-i9j">
+                                        <rect key="frame" x="275" y="210" width="100" height="75"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Roll" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEP-F9-gRV">
+                                        <rect key="frame" x="155" y="414" width="65" height="30"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="65" id="Um9-jf-YPP"/>
+                                            <constraint firstAttribute="height" constant="30" id="jgl-5e-uf9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="5Tu-9D-jUd" firstAttribute="centerY" secondItem="DtU-1R-1Iy" secondAttribute="centerY" constant="58" id="831-jk-vke"/>
+                                    <constraint firstItem="5Tu-9D-jUd" firstAttribute="centerX" secondItem="DtU-1R-1Iy" secondAttribute="centerX" id="APi-Is-9Ig"/>
+                                    <constraint firstItem="EEP-F9-gRV" firstAttribute="centerY" secondItem="DtU-1R-1Iy" secondAttribute="centerY" constant="105.5" id="EtY-25-UhD"/>
+                                    <constraint firstItem="EEP-F9-gRV" firstAttribute="centerX" secondItem="DtU-1R-1Iy" secondAttribute="centerX" id="Vu5-Tx-pkU"/>
+                                    <constraint firstAttribute="height" constant="647" id="Wx1-c2-obQ"/>
+                                    <constraint firstAttribute="width" constant="375" id="zhM-9R-gpu"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zRK-NT-nVD" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" id="BMq-V3-TVC"/>
                             <constraint firstItem="OKt-td-dKO" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="255" id="Ca1-6B-fs0"/>
                             <constraint firstItem="zRK-NT-nVD" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" id="FJB-V3-YdQ"/>
+                            <constraint firstItem="DtU-1R-1Iy" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" id="FTN-2t-jav"/>
                             <constraint firstItem="Del-a5-vWy" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="137.5" id="LwM-du-km1"/>
+                            <constraint firstItem="DtU-1R-1Iy" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="10" id="RXh-69-xBi"/>
                             <constraint firstItem="Rva-tV-kov" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="73.5" id="SSu-gi-4pr"/>
                             <constraint firstItem="GHa-jv-E5k" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" id="XkO-Ap-eF4"/>
                             <constraint firstItem="Rva-tV-kov" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="265.5" id="Zv1-Dg-mqJ"/>
@@ -482,17 +536,29 @@
                             <constraint firstItem="GHa-jv-E5k" firstAttribute="centerY" secondItem="T6o-VI-waa" secondAttribute="centerY" constant="-1.5" id="wV8-ne-gfD"/>
                             <constraint firstItem="nvM-jJ-Jnt" firstAttribute="centerX" secondItem="T6o-VI-waa" secondAttribute="centerX" constant="-137.5" id="xt8-wK-3gU"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="GHa-jv-E5k"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="betAmount" destination="cGJ-gM-5TE" id="L9G-8e-ejC"/>
                         <outlet property="betWindow" destination="Rva-tV-kov" id="SKm-Gi-1uW"/>
                         <outlet property="bettingPopup" destination="zRK-NT-nVD" id="8mj-Ya-MJk"/>
                         <outlet property="bettingPopupLabel" destination="hYr-vU-8qP" id="8q8-Ds-d3o"/>
+                        <outlet property="diceButton" destination="5Tu-9D-jUd" id="Lgz-rv-P1T"/>
                         <outlet property="optionsMenu" destination="GHa-jv-E5k" id="Pkp-wT-atO"/>
                         <outlet property="p0" destination="OKt-td-dKO" id="Ow4-AC-H3j"/>
                         <outlet property="p1" destination="nvM-jJ-Jnt" id="WN4-Ji-qoz"/>
                         <outlet property="p2" destination="Del-a5-vWy" id="KZq-2L-B6l"/>
                         <outlet property="p3" destination="J3b-Ln-fVL" id="c31-XO-Kb9"/>
+                        <outlet property="resultp0" destination="LC8-CT-6E8" id="9y5-y9-tt9"/>
+                        <outlet property="resultp1" destination="PT6-Xh-GLX" id="uAS-BO-4Xj"/>
+                        <outlet property="resultp3" destination="Z9c-N7-ccS" id="wdG-bY-MBn"/>
+                        <outlet property="resultp4" destination="o33-jj-i9j" id="Lep-oq-49F"/>
+                        <outlet property="rollLabel" destination="EEP-F9-gRV" id="iHY-3f-65l"/>
+                        <outlet property="rollWindow" destination="DtU-1R-1Iy" id="g2T-Tm-Shz"/>
                         <outlet property="stepper" destination="4Gb-qh-DDY" id="qME-UB-mxg"/>
                     </connections>
                 </viewController>
@@ -502,6 +568,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="dice.png" width="120" height="65"/>
         <image name="gearicon.png" width="1024" height="1024"/>
     </resources>
 </document>

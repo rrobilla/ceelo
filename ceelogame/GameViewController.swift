@@ -25,6 +25,9 @@ class GameViewController: UIViewController {
     //Contains the banker PlayerStats object
     var banker = [PlayerStats]()
     
+    //Rolling - variables & data containers
+    
+    
     //UI Player cards containing player Data
     @IBOutlet weak var p0: PlayerCard!
     @IBOutlet weak var p1: PlayerCard!
@@ -39,8 +42,21 @@ class GameViewController: UIViewController {
     @IBOutlet weak var betAmount: UILabel!
     @IBOutlet weak var stepper: UIStepper!
     
+    //'Who is betting' popup
     @IBOutlet weak var bettingPopup: UIView!
     @IBOutlet weak var bettingPopupLabel: UILabel!
+    
+    //RollingUI
+    @IBOutlet weak var rollWindow: UIView!
+    @IBOutlet weak var diceButton: UIButton!
+    @IBOutlet weak var rollLabel: UILabel!
+    
+    @IBOutlet weak var resultp0: UIImageView!
+    @IBOutlet weak var resultp1: UIImageView!
+    @IBOutlet weak var resultp3: UIImageView!
+    @IBOutlet weak var resultp4: UIImageView!
+    
+    
     
     
     
@@ -91,6 +107,15 @@ class GameViewController: UIViewController {
         betting()
     }
     
+    //Roll Window - roll dice button
+    @IBAction func rollDice(_ sender: Any) {
+        diceButton.isHidden = true
+        rollLabel.isHidden = true
+    }
+    
+
+    
+    
     //MARK: Loading
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,6 +161,7 @@ class GameViewController: UIViewController {
         return lvl
     }
     
+    //Returns a random CPU difficulty level
     func getDifficulty()-> CpuLevel{
         let number = generateNumber(minVal: 1, maxVal: 3)
         switch(number){
@@ -150,6 +176,7 @@ class GameViewController: UIViewController {
         //Adjust UI component visability during load
         optionsMenu.isHidden = true
         bettingPopup.isHidden = true
+        rollWindow.isHidden = true
 
         //Create the array of players
         
@@ -277,7 +304,7 @@ class GameViewController: UIViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 16) {
-            self.bettingPopupLabel.text = "Returning uncovered Bets"
+            self.bettingPopupLabel.text = "Returning banker's uncovered bet"
             self.bettingPopup.isHidden = false
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 18) {
@@ -291,7 +318,7 @@ class GameViewController: UIViewController {
         }
         
         
-    }
+    }//end: betting()
     
     func rolling(){
         
