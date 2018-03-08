@@ -126,7 +126,7 @@ class GameViewController: UIViewController {
             //The outcomes where banker sets a point
             if (((p.roll.d1 == p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(p.roll.d1 == 6)) || ((p.roll.d1 == p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(p.roll.d1 != 6)&&(p.roll.d3 != 6))){
                 p.point = p.roll.d3
-                //p.playerCard.playerPoint.text = String(p.point)
+                p.playerCard.playerPoint.text = String(p.point)
                 bankerSetPoint()
                 rolling()
                 
@@ -152,8 +152,10 @@ class GameViewController: UIViewController {
                     each.roll.res = 1
                 }
                 p.roll.res = -1
-                //payout()
-                alertPopup(string: "Banker rolled auto loss")
+                bettingPopupLabel.text = "Banker rolled 1-2-3 and loses all bets"
+                bettingPopup.isHidden = false
+                payout()
+                return
             }
             else if (combined != 15)&&(combined != 6){
                 rollLabel.text = "Reroll"
@@ -162,9 +164,11 @@ class GameViewController: UIViewController {
             //Banker rolled an automatic win (1)
             else{
                 p.roll.res = 1
-                alertPopup(string: "Banker rolled automatic win")
+                bettingPopupLabel.text = "Banker rolled an automatic win"
+                bettingPopup.isHidden = false
                 //rollWindow.isHidden = true
-                //payout()
+                payout()
+                return
             }
         }
         
@@ -246,29 +250,30 @@ class GameViewController: UIViewController {
         //Create the array of players
         
         
-        var statsp0 = PlayerStats(name: "You", cash: 10000, bet: 0, point: 0, position: 0, pcard: p0, cpu: CpuLevel.none)
+        let statsp0 = PlayerStats(name: "You", cash: 1000, bet: 0, point: 0, position: 0, pcard: p0, cpu: CpuLevel.none)
         banker.append(statsp0)
         
         
-        var statsp1 = PlayerStats(name: "CPU 1", cash: 10000, bet: 0, point: 0, position: 1, pcard: p1, cpu: getDifficulty())
+        let statsp1 = PlayerStats(name: "CPU 1", cash: 1000, bet: 0, point: 0, position: 1, pcard: p1, cpu: getDifficulty())
         players.append(statsp1)
         
         if (numOfPlayers! == 3){
             p3.isHidden = true
-            var statsp2 = PlayerStats(name: "CPU 2", cash: 10000, bet: 0, point: 0, position: 2, pcard: p2, cpu: getDifficulty())
+            let statsp2 = PlayerStats(name: "CPU 2", cash: 1000, bet: 0, point: 0, position: 2, pcard: p2, cpu: getDifficulty())
             players.append(statsp2)
  
         }
         else{
-            var statsp3 = PlayerStats(name: "CPU 2", cash: 10000, bet: 0, point: 0, position: 2, pcard: p3, cpu: getDifficulty())
+            let statsp3 = PlayerStats(name: "CPU 2", cash: 1000, bet: 0, point: 0, position: 2, pcard: p3, cpu: getDifficulty())
             players.append(statsp3)
 
-            var statsp2 = PlayerStats(name: "CPU 3", cash: 10000, bet: 0, point: 0, position: 3, pcard: p2, cpu: getDifficulty())
+            let statsp2 = PlayerStats(name: "CPU 3", cash: 1000, bet: 0, point: 0, position: 3, pcard: p2, cpu: getDifficulty())
             players.append(statsp2)
  
             
         }
-        //Anything else to initialize game? Current Player icon
+        //Anything else to initialize game?
+        stepper.maximumValue = Double(banker[0].cash)
     }
     
     func setGameBoard(){
@@ -289,10 +294,10 @@ class GameViewController: UIViewController {
     //MARK: Betting Functions
     func cpuBetPercentage(difficulty: CpuLevel)->[Double]{
         if (difficulty == .easy){
-            return [0.05, 0.1, 0.14, 0.02, 0.08]
+            return [0.15, 0.1, 0.14, 0.2, 0.4]
         }
         else if (difficulty == .normal){
-            return [0.05, 0.1, 0.15, 0.2, 0.25]
+            return [0.5, 0.1, 0.15, 0.2, 0.25]
         }
         else{ //hard
             return [0.5, 0.12, 0.35, 0.18, 1.0]
@@ -379,17 +384,17 @@ class GameViewController: UIViewController {
                 self.banker[0].playerCard.playerBet.text = String(self.banker[0].bet)
             }
             self.bettingPopup.isHidden = true
+            self.resetRollWindow()
             self.rollWindow.isHidden = false
-            self.die1.isHidden = true
-            self.die2.isHidden = true
-            self.die3.isHidden = true
+
         }
         
         
-    }//end: betting()
+    }//end: betting functions
     
     //MARK: Rolling Functions
     
+    //Handles setting UI elements after all the rolls have been calculated
     func rolling(){
         for p in players{
             cpuRoll(p: p)
@@ -398,6 +403,9 @@ class GameViewController: UIViewController {
         let loseImg: UIImage? = UIImage(named: "lose.png")
         let drawImg: UIImage? = UIImage(named: "lose.png")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+            self.die1.isHidden = true
+            self.die2.isHidden = true
+            self.die3.isHidden = true
             self.bettingPopupLabel.text = "CPU's are rolling"
         }
         DispatchQueue.main.asyncAfter(deadline: .now() + 4){
@@ -456,9 +464,14 @@ class GameViewController: UIViewController {
                 self.players[2].playerCard.playerPoint.text = String(self.players[2].point)
             }
         }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 13){
+            self.bettingPopupLabel.text = "Settling Payouts"
+            self.payout()
+        }
         
     }
     
+    //Used to generate Banker's roll and keep the UI pace
     func generateRoll(p: PlayerStats){
         //hide rolls on screen and midscreen popup
         bettingPopup.isHidden = true
@@ -472,21 +485,27 @@ class GameViewController: UIViewController {
         banker[0].roll.d3 = generateNumber(minVal: 1, maxVal: 6)
         
         //Delays to load the rolls on screen
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+        //DispatchQueue.main.asyncAfter(deadline: .now() + 2){
             self.die1.text = String(self.banker[0].roll.d1)
             self.die1.isHidden = false
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+        //}
+        //DispatchQueue.main.asyncAfter(deadline: .now() + 2){
             self.die2.text = String(self.banker[0].roll.d2)
             self.die2.isHidden = false
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3){
+        //}
+        //DispatchQueue.main.asyncAfter(deadline: .now() + 3){
             self.die3.text = String(self.banker[0].roll.d3)
             self.die3.isHidden = false
-        }
+            
+        //}
     }
     
+    //Calculate each CPU's roll and set their point value
     func cpuRoll(p: PlayerStats){
+        if (p.bet == 0){
+            p.roll.res = 0
+            return
+        }
         
         p.roll.d1 = generateNumber(minVal: 1, maxVal: 6)
         p.roll.d2 = generateNumber(minVal: 1, maxVal: 6)
@@ -502,7 +521,7 @@ class GameViewController: UIViewController {
                 else if (p.point < banker[0].point){//Lose
                     p.roll.res = -1
                 }
-                else{//Draw
+                else if (p.point == banker[0].point){//Draw
                     p.roll.res = 0
                     
                 }
@@ -517,7 +536,7 @@ class GameViewController: UIViewController {
                 else if (p.point < banker[0].point){//Lose
                     p.roll.res = -1
                 }
-                else{//Draw
+                else if (p.point == banker[0].point){//Draw
                     p.roll.res = 0
                     
                 }
@@ -532,7 +551,7 @@ class GameViewController: UIViewController {
                 else if (p.point < banker[0].point){//Lose
                     p.roll.res = -1
                 }
-                else{//Draw
+                else if (p.point == banker[0].point){//Draw
                     p.roll.res = 0
                     
                 }
@@ -550,13 +569,95 @@ class GameViewController: UIViewController {
                 p.roll.res = 1
             }
         
-    }
+    }//end: rolling functions
     
     func payout(){
-            
+        
+        //If banker got an auto win
+        if (banker[0].roll.res == 1){
+            for p in players{
+                banker[0].cash = banker[0].cash + p.bet
+                p.cash = p.cash - p.bet
+            }
+        }
+        else if (banker[0].roll.res == -1){
+            for p in players{
+                banker[0].cash = banker[0].cash - p.bet
+                p.cash = p.cash + p.bet
+            }
+        }
+        else{
+            for p in players{
+                if (p.roll.res == 1){//win
+                    banker[0].cash = banker[0].cash - p.bet
+                    p.cash = p.cash + p.bet
+                }
+                else if (p.roll.res == -1){//lose
+                    banker[0].cash = banker[0].cash + p.bet
+                    p.cash = p.cash - p.bet
+                }
+                else{//draw
+                    continue
+                }
+                
+            }
+        }
+        
+        //Adjust UI and player's values
+        banker[0].playerCard.playerCash.text = String(banker[0].cash)
+        //Reset banker's bet
+        banker[0].bet = 0
+        banker[0].playerCard.playerBet.text = String(banker[0].bet)
+        banker[0].point = 0
+        //Reset banker's point
+        banker[0].playerCard.playerPoint.text = String(banker[0].point)
+        //Reset banker's roll res
+        banker[0].roll.res = 0
+
+        for p in players{
+            p.playerCard.playerCash.text = String(p.cash)
+            //Reset bet
+            p.bet = 0
+            p.playerCard.playerBet.text = String(p.bet)
+            //Reset Point
+            p.point = 0
+            p.playerCard.playerPoint.text = String(p.point)
+            //Reset roll res
+            p.roll.res = 0
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.bettingPopupLabel.text = "Starting new round"
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.stepper.maximumValue = Double(self.banker[0].cash)
+            self.stepper.value = 0.0
+            self.betAmount.text = String(0)
+            self.bettingPopup.isHidden = true
+            self.rollWindow.isHidden = true
+            self.betWindow.isHidden = false
+        }
+        
+    }
+    
+    //MARK: UI Reset functions
+    func resetRollWindow(){
+        
+        diceButton.isHidden = false
+        rollLabel.isHidden = false
+        
+        resultp0.isHidden = true
+        resultp1.isHidden = true
+        resultp3.isHidden = true
+        resultp4.isHidden = true
+        
+        die1.isHidden = true
+        die2.isHidden = true
+        die3.isHidden = true
     }
 
 }
+
+
 
 //Mark: KeeperCode
 
