@@ -13,6 +13,14 @@ import Foundation
 enum CpuLevel {
     case easy, normal, hard, none
 }
+//Struct for each player to hold rolls and win flag
+struct Roll {
+    var d1 = 0;
+    var d2 = 0;
+    var d3 = 0;
+    var res = 0;
+}
+
 
 class GameViewController: UIViewController {
     
@@ -66,9 +74,9 @@ class GameViewController: UIViewController {
     //MARK: UI Touch Events
     
     //Under construction Pop-up alert
-    func alertPopup(){
+    func alertPopup(string: String){
         // create the alert
-        let alert = UIAlertController(title: "Error:", message: "The element you selected is not implemented yet", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Error:", message: string, preferredStyle: UIAlertControllerStyle.alert)
         
         // add an action (button)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
@@ -88,7 +96,7 @@ class GameViewController: UIViewController {
     }
     @IBAction func restartGame(_ sender: Any) {
         //TODO: Implement restarting the game
-        alertPopup()
+        alertPopup(string: "Restart game not implemented")
     }
 
     //Options menu - return to game button
@@ -112,10 +120,64 @@ class GameViewController: UIViewController {
     
     //Roll Window - roll dice button
     @IBAction func rollDice(_ sender: Any) {
-        diceButton.isHidden = true
-        rollLabel.isHidden = true
+        generateRoll(p: banker[0])
+        for p in banker{
+            let combined = (p.roll.d1 + p.roll.d2 + p.roll.d3)
+            //The outcomes where banker sets a point
+            if (((p.roll.d1 == p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(p.roll.d1 == 6)) || ((p.roll.d1 == p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(p.roll.d1 != 6)&&(p.roll.d3 != 6))){
+                p.point = p.roll.d3
+                //p.playerCard.playerPoint.text = String(p.point)
+                bankerSetPoint()
+                rolling()
+                
+            }
+                
+            else if (((p.roll.d1 != p.roll.d2)&&(p.roll.d1 == p.roll.d3)&&(p.roll.d1 == 6)) || ((p.roll.d1 != p.roll.d2)&&(p.roll.d1 == p.roll.d3)&&(p.roll.d1 != 6)&&(p.roll.d2 != 6))){
+                p.point = p.roll.d2
+                p.playerCard.playerPoint.text = String(p.point)
+                bankerSetPoint()
+                rolling()
+            }
+
+            else if (((p.roll.d1 != p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(p.roll.d2 == 6))||((p.roll.d1 != p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(p.roll.d2 != 6)&&(p.roll.d1 != 6))){
+                p.point = p.roll.d1
+                p.playerCard.playerPoint.text = String(p.point)
+                bankerSetPoint()
+                rolling()
+            }
+            
+            //Banker rolled 123 - auto loss(-1)
+            else if (p.roll.d1 != p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(combined == 6){
+                for each in players{
+                    each.roll.res = 1
+                }
+                p.roll.res = -1
+                //payout()
+                alertPopup(string: "Banker rolled auto loss")
+            }
+            else if (combined != 15)&&(combined != 6){
+                rollLabel.text = "Reroll"
+                
+            }
+            //Banker rolled an automatic win (1)
+            else{
+                p.roll.res = 1
+                alertPopup(string: "Banker rolled automatic win")
+                //rollWindow.isHidden = true
+                //payout()
+            }
+        }
+        
+        
     }
     
+    func bankerSetPoint(){
+        diceButton.isHidden = true
+        rollLabel.isHidden = true
+        rollLabel.text = "Roll"
+        bettingPopupLabel.text = "Banker set point"
+        bettingPopup.isHidden = false
+    }
 
     
     
@@ -179,7 +241,7 @@ class GameViewController: UIViewController {
         //Adjust UI component visability during load
         optionsMenu.isHidden = true
         bettingPopup.isHidden = true
-        //rollWindow.isHidden = true
+        rollWindow.isHidden = true
 
         //Create the array of players
         
@@ -267,12 +329,12 @@ class GameViewController: UIViewController {
         }//Each CPU has made their bets
         
         
-        //TODO: Currently using inline values for delay time, try to figure out a way to feed it a value variable
+        //TODO: Currently using inline values for delay time, try to figure out a way to feed it a const
 
         for p in players{
             if (p.position == 1){
                 //trigger onscreen ui popup
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.bettingPopupLabel.text = p.name + " is betting"
                 self.bettingPopup.isHidden = false
                 }
@@ -303,7 +365,6 @@ class GameViewController: UIViewController {
                     self.bettingPopup.isHidden = true
                 }
             }
-            //delayTime += delayTime
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 16) {
@@ -318,12 +379,176 @@ class GameViewController: UIViewController {
                 self.banker[0].playerCard.playerBet.text = String(self.banker[0].bet)
             }
             self.bettingPopup.isHidden = true
+            self.rollWindow.isHidden = false
+            self.die1.isHidden = true
+            self.die2.isHidden = true
+            self.die3.isHidden = true
         }
         
         
     }//end: betting()
     
+    //MARK: Rolling Functions
+    
     func rolling(){
+        for p in players{
+            cpuRoll(p: p)
+        }
+        let winImg: UIImage? = UIImage(named: "win.png")
+        let loseImg: UIImage? = UIImage(named: "lose.png")
+        let drawImg: UIImage? = UIImage(named: "lose.png")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+            self.bettingPopupLabel.text = "CPU's are rolling"
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4){
+            if (self.players[0].roll.res == 1){
+                self.resultp1.image = winImg
+            }
+            else if (self.players[0].roll.res == -1){
+                self.resultp1.image = loseImg
+            }
+            else{
+                self.resultp1.image = drawImg
+            }
+            self.resultp1.isHidden = false
+            self.players[0].playerCard.playerPoint.text = String(self.players[0].point)
+        }
+        if (numOfPlayers == 3){
+            DispatchQueue.main.asyncAfter(deadline: .now() + 7){
+                if (self.players[1].roll.res == 1){
+                    self.resultp4.image = winImg
+                }
+                else if (self.players[1].roll.res == -1){
+                    self.resultp4.image = loseImg
+                }
+                else{
+                    self.resultp4.image = drawImg
+                }
+                self.resultp4.isHidden = false
+                self.players[1].playerCard.playerPoint.text = String(self.players[1].point)
+            }
+        }
+        else{
+            DispatchQueue.main.asyncAfter(deadline: .now() + 7){
+                if (self.players[1].roll.res == 1){
+                    self.resultp3.image = winImg
+                }
+                else if (self.players[1].roll.res == -1){
+                    self.resultp3.image = loseImg
+                }
+                else{
+                    self.resultp3.image = drawImg
+                }
+                self.resultp3.isHidden = false
+                self.players[1].playerCard.playerPoint.text = String(self.players[1].point)
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 10){
+                if (self.players[2].roll.res == 1){
+                    self.resultp4.image = winImg
+                }
+                else if (self.players[2].roll.res == -1){
+                    self.resultp4.image = loseImg
+                }
+                else{
+                    self.resultp4.image = drawImg
+                }
+                self.resultp4.isHidden = false
+                self.players[2].playerCard.playerPoint.text = String(self.players[2].point)
+            }
+        }
+        
+    }
+    
+    func generateRoll(p: PlayerStats){
+        //hide rolls on screen and midscreen popup
+        bettingPopup.isHidden = true
+        die1.isHidden = true
+        die2.isHidden = true
+        die3.isHidden = true
+        
+        //Generate roll numbers
+        banker[0].roll.d1 = generateNumber(minVal: 1, maxVal: 6)
+        banker[0].roll.d2 = generateNumber(minVal: 1, maxVal: 6)
+        banker[0].roll.d3 = generateNumber(minVal: 1, maxVal: 6)
+        
+        //Delays to load the rolls on screen
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1){
+            self.die1.text = String(self.banker[0].roll.d1)
+            self.die1.isHidden = false
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2){
+            self.die2.text = String(self.banker[0].roll.d2)
+            self.die2.isHidden = false
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3){
+            self.die3.text = String(self.banker[0].roll.d3)
+            self.die3.isHidden = false
+        }
+    }
+    
+    func cpuRoll(p: PlayerStats){
+        
+        p.roll.d1 = generateNumber(minVal: 1, maxVal: 6)
+        p.roll.d2 = generateNumber(minVal: 1, maxVal: 6)
+        p.roll.d3 = generateNumber(minVal: 1, maxVal: 6)
+        
+        let combined = (p.roll.d1 + p.roll.d2 + p.roll.d3)
+        //The outcomes where player	 sets a point
+        if (((p.roll.d1 == p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(p.roll.d1 == 6)) || ((p.roll.d1 == p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(p.roll.d1 != 6)&&(p.roll.d3 != 6))){
+                p.point = p.roll.d3
+                if (p.point > banker[0].point){//Win
+                    p.roll.res = 1
+                }
+                else if (p.point < banker[0].point){//Lose
+                    p.roll.res = -1
+                }
+                else{//Draw
+                    p.roll.res = 0
+                    
+                }
+            }
+                
+            else if (((p.roll.d1 != p.roll.d2)&&(p.roll.d1 == p.roll.d3)&&(p.roll.d1 == 6)) || ((p.roll.d1 != p.roll.d2)&&(p.roll.d1 == p.roll.d3)&&(p.roll.d1 != 6)&&(p.roll.d2 != 6))){
+                p.point = p.roll.d2
+         
+                if (p.point > banker[0].point){//Win
+                    p.roll.res = 1
+                }
+                else if (p.point < banker[0].point){//Lose
+                    p.roll.res = -1
+                }
+                else{//Draw
+                    p.roll.res = 0
+                    
+                }
+            }
+            
+            else if (((p.roll.d1 != p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(p.roll.d2 == 6))||((p.roll.d1 != p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(p.roll.d2 != 6)&&(p.roll.d1 != 6))){
+                p.point = p.roll.d1
+            
+                if (p.point > banker[0].point){//Win
+                    p.roll.res = 1
+                }
+                else if (p.point < banker[0].point){//Lose
+                    p.roll.res = -1
+                }
+                else{//Draw
+                    p.roll.res = 0
+                    
+                }
+            }
+            
+                //Player rolled 123 - auto loss(-1)
+            else if (p.roll.d1 != p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(combined == 6){
+                p.roll.res = -1
+            }
+            else if (combined != 15)&&(combined != 6){
+                cpuRoll(p: p)
+            }
+                //Player rolled an automatic win (1)
+            else{
+                p.roll.res = 1
+            }
         
     }
     

@@ -15,6 +15,7 @@ class PlayerStats: NSObject {
     var position: Int!
     var playerCard: PlayerCard!
     var cpuLvl: CpuLevel!
+    var roll: Roll!
     //var tiltPercentage: Int? //Use this to affect the betting paterns of the cpu
     
 /*
@@ -64,5 +65,6 @@ class PlayerStats: NSObject {
         self.position = position
         self.playerCard = pcard
         self.cpuLvl = cpu
+        self.roll = Roll()
     }
 }
