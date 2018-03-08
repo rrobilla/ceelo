@@ -154,7 +154,7 @@
                                     <segue destination="j1P-wI-cXj" kind="show" identifier="toRules" id="OqK-4a-E4a"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J2o-CJ-fkg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="title.png" translatesAutoresizingMaskIntoConstraints="NO" id="J2o-CJ-fkg">
                                 <rect key="frame" x="67" y="80" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="E9K-gb-Dzz"/>
@@ -383,7 +383,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rva-tV-kov">
                                 <rect key="frame" x="145" y="551" width="232" height="96"/>
                                 <subviews>
-                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="4Gb-qh-DDY">
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" stepValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="4Gb-qh-DDY">
                                         <rect key="frame" x="20" y="67" width="94" height="29"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="94" id="JaA-oE-tG3"/>
@@ -616,5 +616,6 @@
     <resources>
         <image name="dice.png" width="120" height="65"/>
         <image name="gearicon.png" width="1024" height="1024"/>
+        <image name="title.png" width="240" height="128"/>
     </resources>
 </document>

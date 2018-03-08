@@ -24,6 +24,7 @@
 		33A668D1205198D0002089A4 /* lose.png in Resources */ = {isa = PBXBuildFile; fileRef = 33A668D0205198D0002089A4 /* lose.png */; };
 		33A668D3205198D7002089A4 /* win.png in Resources */ = {isa = PBXBuildFile; fileRef = 33A668D2205198D7002089A4 /* win.png */; };
 		33A668D5205198DE002089A4 /* draw.png in Resources */ = {isa = PBXBuildFile; fileRef = 33A668D4205198DE002089A4 /* draw.png */; };
+		33A668D72051C050002089A4 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 33A668D62051C050002089A4 /* title.png */; };
 		33B36B6B204FBD86006F9967 /* dice.png in Resources */ = {isa = PBXBuildFile; fileRef = 33B36B6A204FBD86006F9967 /* dice.png */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		33A668D0205198D0002089A4 /* lose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lose.png; sourceTree = "<group>"; };
 		33A668D2205198D7002089A4 /* win.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win.png; sourceTree = "<group>"; };
 		33A668D4205198DE002089A4 /* draw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draw.png; sourceTree = "<group>"; };
+		33A668D62051C050002089A4 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
 		33B36B6A204FBD86006F9967 /* dice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dice.png; path = ceelogame/dice.png; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -119,6 +121,7 @@
 		3300A24B20413ECD00F1B998 /* ceelogame */ = {
 			isa = PBXGroup;
 			children = (
+				33A668D62051C050002089A4 /* title.png */,
 				33A668D4205198DE002089A4 /* draw.png */,
 				33A668D2205198D7002089A4 /* win.png */,
 				33A668D0205198D0002089A4 /* lose.png */,
@@ -269,6 +272,7 @@
 				3300A25720413ECD00F1B998 /* LaunchScreen.storyboard in Resources */,
 				33A668D5205198DE002089A4 /* draw.png in Resources */,
 				33A668D1205198D0002089A4 /* lose.png in Resources */,
+				33A668D72051C050002089A4 /* title.png in Resources */,
 				337C14B5204891A400637658 /* gearicon.png in Resources */,
 				33B36B6B204FBD86006F9967 /* dice.png in Resources */,
 				3300A25420413ECD00F1B998 /* Assets.xcassets in Resources */,

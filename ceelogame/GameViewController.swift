@@ -401,7 +401,7 @@ class GameViewController: UIViewController {
         }
         let winImg: UIImage? = UIImage(named: "win.png")
         let loseImg: UIImage? = UIImage(named: "lose.png")
-        let drawImg: UIImage? = UIImage(named: "lose.png")
+        let drawImg: UIImage? = UIImage(named: "draw.png")
         DispatchQueue.main.asyncAfter(deadline: .now() + 1){
             self.die1.isHidden = true
             self.die2.isHidden = true
