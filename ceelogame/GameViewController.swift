@@ -95,8 +95,11 @@ class GameViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     @IBAction func restartGame(_ sender: Any) {
-        //TODO: Implement restarting the game
-        alertPopup(string: "Restart game not implemented")
+        banker.removeAll()
+        players.removeAll()
+        resetRollWindow()
+        initializePlayers()
+        setGameBoard()
     }
 
     //Options menu - return to game button
@@ -175,6 +178,7 @@ class GameViewController: UIViewController {
         
     }
     
+    //Causes the banker set point popup
     func bankerSetPoint(){
         diceButton.isHidden = true
         rollLabel.isHidden = true
