@@ -2,8 +2,8 @@
 //  GameSetupViewController.swift
 //  ceelogame
 //
-//  Created by rr on 2018-02-23.
-//  Copyright © 2018 rr. All rights reserved.
+//  Created by Ryan Robillard on 2018-02-23.
+//  Copyright © 2018 Ryan Robillard. All rights reserved.
 //
 
 import UIKit
@@ -23,28 +23,27 @@ class GameSetupViewController: UIViewController {
     //This function controls setting the number of players for the game setting data to be passed
     @IBAction func sliderChangeValue(_ sender: Any) {
         sliderLabel.text? = String(Int(playersSlider.value))
-        //set game data player amount to playerSlider's value
+        
     }
     
-    //Cancel button Action that returns to the LandingViewController
+    //Cancel button - returns to the LandingView
     @IBAction func cancel(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
     
+    //MARK: Loading Handlers
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-    //MARK: Delegates
-    
-    //The segue for passing game setting data to the GameViewController
+    /* Prepare segue for passing game setting data to the GameViewController
+     * Params: segue - the segue between the views
+     */
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         if segue.identifier == "toGame" {
@@ -64,23 +63,10 @@ class GameSetupViewController: UIViewController {
         sliderLabel.text? = String(Int(playersSlider.value))
         //set game data player amount to playerSlider's value
         //set game data game type to 0 (which means banker mode, 1 means no banker), segmented control's banker type which starts out selected
-        
-        
     }
     
     //This limits the view from rotating
     override open var shouldAutorotate: Bool{
         return false
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

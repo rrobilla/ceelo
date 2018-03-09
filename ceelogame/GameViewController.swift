@@ -2,18 +2,22 @@
 //  GameViewController.swift
 //  ceelogame
 //
-//  Created by rr on 2018-02-23.
-//  Copyright © 2018 rr. All rights reserved.
+//  Created by Ryan Robillard on 2018-02-23.
+//  Copyright © 2018 Ryan Robillard. All rights reserved.
 //
 
 import UIKit
 import Foundation
 
-//Enum used for setting CPU betting patterns
+/*Enumeration - CPULevel
+ * Used for setting CPU betting patterns
+ */
 enum CpuLevel {
     case easy, normal, hard, none
 }
-//Struct for each player to hold rolls and win flag
+/* Struct - Roll
+ * Holds each dice roll for the player and their win/lose/draw result
+ */
 struct Roll {
     var d1 = 0;
     var d2 = 0;
@@ -33,19 +37,17 @@ class GameViewController: UIViewController {
     //Contains the banker PlayerStats object
     var banker = [PlayerStats]()
     
-    //Rolling - variables & data containers
     
-    
-    //UI Player cards containing player Data
+    //UI Player cards containing player Data and a reference to their associated UI element
     @IBOutlet weak var p0: PlayerCard!
     @IBOutlet weak var p1: PlayerCard!
     @IBOutlet weak var p2: PlayerCard!
     @IBOutlet weak var p3: PlayerCard!
     
-    //Options Menu outlet links
+    //Options Menu Popup
     @IBOutlet weak var optionsMenu: UIView!
     
-    //Betting window outlet links
+    //Betting window Popup
     @IBOutlet weak var betWindow: UIView!
     @IBOutlet weak var betAmount: UILabel!
     @IBOutlet weak var stepper: UIStepper!
@@ -54,16 +56,16 @@ class GameViewController: UIViewController {
     @IBOutlet weak var bettingPopup: UIView!
     @IBOutlet weak var bettingPopupLabel: UILabel!
     
-    //RollingUI
+    //RollingUI Popup
     @IBOutlet weak var rollWindow: UIView!
     @IBOutlet weak var diceButton: UIButton!
     @IBOutlet weak var rollLabel: UILabel!
-    
+    //Win/lose/draw popups
     @IBOutlet weak var resultp0: UIImageView!
     @IBOutlet weak var resultp1: UIImageView!
     @IBOutlet weak var resultp3: UIImageView!
     @IBOutlet weak var resultp4: UIImageView!
-    
+    //Dice roll popups
     @IBOutlet weak var die1: UILabel!
     @IBOutlet weak var die2: UILabel!
     @IBOutlet weak var die3: UILabel!
@@ -73,7 +75,9 @@ class GameViewController: UIViewController {
     
     //MARK: UI Touch Events
     
-    //Under construction Pop-up alert
+    /* This function is used to create a popup alert for general use
+     * Params: string - the message contained in the alert
+     */
     func alertPopup(string: String){
         // create the alert
         let alert = UIAlertController(title: "Error:", message: string, preferredStyle: UIAlertControllerStyle.alert)
@@ -94,6 +98,8 @@ class GameViewController: UIViewController {
     @IBAction func exitGame(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    //Options menu - Restart game button
     @IBAction func restartGame(_ sender: Any) {
         banker.removeAll()
         players.removeAll()
@@ -111,6 +117,8 @@ class GameViewController: UIViewController {
     @IBAction func changeBet(_ sender: Any) {
         betAmount.text = String(describing: Int(stepper.value))
     }
+    
+    //Betting window - bet button
     @IBAction func confirmBet(_ sender: Any) {
         for p in banker{
             p.bet = Int(stepper.value)
@@ -126,6 +134,7 @@ class GameViewController: UIViewController {
         generateRoll(p: banker[0])
         for p in banker{
             let combined = (p.roll.d1 + p.roll.d2 + p.roll.d3)
+            
             //The outcomes where banker sets a point
             if (((p.roll.d1 == p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(p.roll.d1 == 6)) || ((p.roll.d1 == p.roll.d2)&&(p.roll.d1 != p.roll.d3)&&(p.roll.d1 != 6)&&(p.roll.d3 != 6))){
                 p.point = p.roll.d3
@@ -189,18 +198,13 @@ class GameViewController: UIViewController {
 
     
     
-    //MARK: Loading
+    //MARK: Loading Handlers
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        // Do any additional setup after loading the view
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        
-        // Dispose of any resources that can be recreated.
     }
     
     //This controls changing data in the view as it loads
@@ -210,13 +214,10 @@ class GameViewController: UIViewController {
         self.view.addSubview(optionsMenu)
         initializePlayers()
         setGameBoard()
-        
-        
         //set game data player amount to playerSlider's value
         //set game data game type to 0 (which means banker mode, 1 means no banker), segmented control's banker type which starts out selected
-        
-        
     }
+    
     //Stops screen from rotating
     override open var shouldAutorotate: Bool{
         return false
@@ -244,6 +245,7 @@ class GameViewController: UIViewController {
         default: return CpuLevel.easy
         }
     }
+    
     //Adjust the game values and screens associated during the view load
     func initializePlayers(){
         //Adjust UI component visability during load
@@ -252,11 +254,8 @@ class GameViewController: UIViewController {
         rollWindow.isHidden = true
 
         //Create the array of players
-        
-        
         let statsp0 = PlayerStats(name: "You", cash: 1000, bet: 0, point: 0, position: 0, pcard: p0, cpu: CpuLevel.none)
         banker.append(statsp0)
-        
         
         let statsp1 = PlayerStats(name: "CPU 1", cash: 1000, bet: 0, point: 0, position: 1, pcard: p1, cpu: getDifficulty())
         players.append(statsp1)
@@ -280,6 +279,7 @@ class GameViewController: UIViewController {
         stepper.maximumValue = Double(banker[0].cash)
     }
     
+    //Sets the UI Player cards to their initial values
     func setGameBoard(){
         for p in banker{
             p.playerCard.playerName.text = p.name
@@ -296,6 +296,10 @@ class GameViewController: UIViewController {
     }
     
     //MARK: Betting Functions
+    
+    /* Generates a random bet percentage and returns it as a Double
+     * Params: difficulty - a CPULevel enum used in if/else choice
+     */
     func cpuBetPercentage(difficulty: CpuLevel)->[Double]{
         if (difficulty == .easy){
             return [0.15, 0.1, 0.14, 0.2, 0.4]
@@ -308,6 +312,9 @@ class GameViewController: UIViewController {
         }
     }
     
+    /* Main game function - Betting
+     * Use in handling the betting round for the CPU players values and UI
+     */
     func betting(){
         let bankerBet = banker[0].bet
         var totalAgainst = 0
@@ -322,6 +329,8 @@ class GameViewController: UIViewController {
             //If the banker's bet has been covered already, go to the next cpu for betting
             let needsToBeCovered = bankerBet! - totalAgainst
             if ((needsToBeCovered) <= 0){
+                p.bet = 0
+                p.roll.res = 0
                 continue
             }
             let cpuBet = Int(Double(needsToBeCovered) * cpuPercentages[n])
@@ -331,15 +340,15 @@ class GameViewController: UIViewController {
             else{
                 p.bet = 1
             }
-            
-            //p.playerCard.playerBet.text = String(p.bet)// move this outside the loop and delay it - can add animations
+
             totalAgainst += p.bet
             
-        }//Each CPU has made their bets
+        }//Each CPU has made their bets at this point
         
         
         //TODO: Currently using inline values for delay time, try to figure out a way to feed it a const
-
+        
+        //UI changes using a delay to keep a visual pace for players
         for p in players{
             if (p.position == 1){
                 //trigger onscreen ui popup
@@ -376,6 +385,7 @@ class GameViewController: UIViewController {
             }
         }
         
+        //Informative UI changes
         DispatchQueue.main.asyncAfter(deadline: .now() + 16) {
             self.bettingPopupLabel.text = "Returning banker's uncovered bet"
             self.bettingPopup.isHidden = false
@@ -394,7 +404,7 @@ class GameViewController: UIViewController {
         }
         
         
-    }//end: betting functions
+    }
     
     //MARK: Rolling Functions
     
@@ -488,7 +498,8 @@ class GameViewController: UIViewController {
         banker[0].roll.d2 = generateNumber(minVal: 1, maxVal: 6)
         banker[0].roll.d3 = generateNumber(minVal: 1, maxVal: 6)
         
-        //Delays to load the rolls on screen
+        //Delays to load the rolls on screen - currently broken
+        //so being commented out
         //DispatchQueue.main.asyncAfter(deadline: .now() + 2){
             self.die1.text = String(self.banker[0].roll.d1)
             self.die1.isHidden = false
@@ -573,8 +584,11 @@ class GameViewController: UIViewController {
                 p.roll.res = 1
             }
         
-    }//end: rolling functions
+    }
     
+    /* Main game function - Payouts
+     * Used to deal with settling round payouts and adjusting the UI to change player ui values and start the next round
+     */
     func payout(){
         
         //If banker got an auto win
@@ -584,12 +598,14 @@ class GameViewController: UIViewController {
                 p.cash = p.cash - p.bet
             }
         }
+            //If banker got an auto lose
         else if (banker[0].roll.res == -1){
             for p in players{
                 banker[0].cash = banker[0].cash - p.bet
                 p.cash = p.cash + p.bet
             }
         }
+        //Compare player rolls to the banker's and adjust
         else{
             for p in players{
                 if (p.roll.res == 1){//win
@@ -632,6 +648,7 @@ class GameViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
             self.bettingPopupLabel.text = "Starting new round"
         }
+        //Sets the game up to start the next round
         DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             self.stepper.maximumValue = Double(self.banker[0].cash)
             self.stepper.value = 0.0
@@ -644,6 +661,8 @@ class GameViewController: UIViewController {
     }
     
     //MARK: UI Reset functions
+    
+    //Reset the rollWindow's inner UI elements visability
     func resetRollWindow(){
         
         diceButton.isHidden = false
